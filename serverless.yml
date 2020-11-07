@@ -75,6 +75,7 @@ functions:
 package:
   exclude:
     - secrets.yml
+    - mockData/**
 
 custom:
   stage: ${opt:stage, self:provider.stage}
