@@ -7,3 +7,9 @@ jspm_packages
 
 # environment variables
 secrets.yml
+
+# mockData files - ignored due to potential credential leaks
+mockData
+
+# test files
+.webpack
