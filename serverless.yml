@@ -29,6 +29,8 @@ provider:
     SLACK_SIGNING_SECRET: ${self:custom.secrets.SLACK_SIGNING_SECRET}
     SLACK_BOT_TOKEN: "${self:custom.secrets.SLACK_BOT_TOKEN}"
 
+plugins:
+  - serverless-bundle
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1

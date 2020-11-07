@@ -1,6 +1,12 @@
 {
+  "name": "caanewsbot",
   "dependencies": {
     "@slack/bolt": "^2.4.1"
   },
-  "name": "caanewsbot"
+  "scripts": {
+    "test": "serverless-bundle test"
+  },
+  "devDependencies": {
+    "serverless-bundle": "^3.2.1"
+  }
 }
