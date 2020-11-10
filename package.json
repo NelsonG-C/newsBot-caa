@@ -1,7 +1,9 @@
 {
   "name": "caanewsbot",
   "dependencies": {
-    "@slack/bolt": "^2.4.1"
+    "@slack/bolt": "^2.4.1",
+    "axios": "^0.21.0",
+    "jsdom": "^16.4.0"
   },
   "scripts": {
     "test": "serverless-bundle test"
