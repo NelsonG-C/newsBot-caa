@@ -11,7 +11,7 @@ async function publishMessage(id, text) {
     // Call the chat.postMessage method using the built-in WebClient
     const result = await app.client.chat.postMessage({
       // The token you used to initialize your app
-      token: null,
+      token: process.env.SLACK_BOT_TOKEN,
       channel: id,
       text: text,
       // You could also use a blocks[] array to send richer content
@@ -29,24 +29,25 @@ export const hello = async (event, context) => {
   const body = JSON.parse(event.body);
   console.log("Event Body:", body);
   const slackE = body.event;
-
+  console.log("this sis app", app);
+  app.action("message", async ({ action, ack }) => {
+    console.log("Acknowledging now");
+    await ack();
+    console.log("acknowledged");
+  });
   // this isnt robust enough at the moment. I need it to handle non related commands and then end, rather than keep firing
-  if (
+  if (slackE.bot_id == "B01E5B1LCMQ") {
+    return;
+  } else if (
+    slackE.text == "Newsbot send news" &&
     slackE.channel_type == "im" &&
-    slackE.type == "message" &&
-    slackE.text == "Hey this is a test"
+    slackE.type == "message"
   ) {
-    // scrape the latest article
+    return;
+  } else {
+    console.log("Nothing to report");
     const article = await getFirstPost();
     await publishMessage(slackE.channel, article);
-    return {
-      statusCode: 200,
-      body: slackE,
-    };
-  } else {
-    // need to implement a message that gives rules and ends, rather than throwing an error
-    //could have a trycatch here as well to handle overall error
-    throw Error("Something went wrong");
+    return;
   }
-  // throw new Error('Something went wrong');
 };
