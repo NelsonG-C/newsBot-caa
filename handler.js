@@ -11,6 +11,11 @@ const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
 
+// slack slash command
+//have option for aus or global news
+//retrieve from CAA site for aus news
+//use slash command details to choose
+
 const messageResponse = async (slackE, callback) => {
   //callback sending Slack a 200 response
   callback(null, success_response);
